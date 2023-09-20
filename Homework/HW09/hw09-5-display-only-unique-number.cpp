@@ -40,50 +40,28 @@
 #include <stdio.h>
 
 int main() {
-    int N;
-    int i ;
-    int arr[N] ;
-    printf("Input N: ");
-    scanf("%d", &N);
-    
-    for ( i = 0; i < N; i++) {
-        printf("Input: ");
-        scanf("%d", &arr[i]);
-    }
-    
-    int unique[N];
-    int uniqueCount = 0;
-    
-    for (int i = 0; i < N; i++) {
-        int isUnique = 1;
-        
-        for (int j = 0; j < uniqueCount; j++) {
-            if (arr[i] == unique[j]) {
-                isUnique = 0;
-                break;
-            }
-        }
-        
-        if (isUnique) {
-            unique[uniqueCount] = arr[i];
-            uniqueCount++;
-        }
-    }
-    
-    for (int i = 0; i < uniqueCount - 1; i++) {
-        for (int j = 0; j < uniqueCount - i - 1; j++) {
-            if (unique[j] > unique[j + 1]) {
-                int temp = unique[j];
-                unique[j] = unique[j + 1];
-                unique[j + 1] = temp;
-            }
-        }
-    }
-    
-    printf("Unique value : ");
-    for (int i = 0; i < uniqueCount; i++) {
-        printf("%d ", unique[i]);
-    }
-    
-    return 0;
-}
+    int n ;
+    printf( "Input N : " ) ;
+    scanf( "%d", &n ) ;
+
+    int a[n] ;
+    int numner[1000] = {0} ; // สร้างอาเรย์ numner เพื่อตรวจสอบว่าตัวเลขนั้นซ้ำหรือไม่
+
+    // รับข้อมูลและตรวจสอบค่าที่ไม่มีการซ้ำกัน
+    for ( int i = 0 ; i < n ; i++ ) {
+        printf( "Input : " ) ;
+        scanf( "%d", &a[i] ) ;
+        numner[a[i]]++ ;
+    }//end for
+
+    // แสดงผลลัพธ์
+    printf( "Unique value : " ) ;
+    for ( int i = 0 ; i < 1000 ; i++ ) {
+        if ( numner[i] == 1 ) {
+            printf( "%d ", i ) ;
+        }//end if
+    }//end for
+    printf( "\n" ) ;
+
+    return 0 ;
+}//end function
